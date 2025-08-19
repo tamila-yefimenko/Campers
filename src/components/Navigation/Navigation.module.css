@@ -1,0 +1,22 @@
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.link {
+  color: #e0d1f8;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.link:hover {
+  color: #ffffff;
+}
+
+.active {
+  color: #ffffff;
+  border-bottom: 2px solid #fff;
+}

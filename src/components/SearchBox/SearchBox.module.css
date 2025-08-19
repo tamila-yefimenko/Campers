@@ -1,0 +1,26 @@
+.filterInputWrapper {
+  margin: 2rem auto 0 auto;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.inputTitle {
+  font-weight: 600;
+  color: #5e2b97;
+}
+
+.filterInput {
+  padding: 0.5rem;
+  border: 1px solid #c5b8e6;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.filterInput:focus {
+  outline: none;
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
