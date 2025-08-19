@@ -1,12 +1,82 @@
-# React + Vite
+    Project Overview
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is the frontend part of a web application for TravelTrucks, a
+company specializing in camper rentals. The application includes multiple pages
+such as: • Home page with a call-to-action banner • Catalog page with filtering
+and favorites functionality • Camper detail page with reviews and a booking form
+The frontend consumes a ready-made backend API available at:
+https://66b1f8e71ca8ad33d4f5f63e.mockapi.io/campers
 
-Currently, two official plugins are available:
+    API Endpoints
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- GET /campers – Fetch all camper listings (filtering must be performed on the
+  backend)
+- GET /campers/:id – Fetch detailed info for a specific camper by ID
 
-## Expanding the ESLint configuration
+  Tech Stack
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Vite + React for fast development
+- Redux for global state management
+- React Router for routing
+- Axios for HTTP requests
+- CSS styling: any library of your choice (e.g., CSS Modules, styled-components,
+  MUI, etc.)
+
+      Pages & Routing
+
+  | Route | Description | | / | Home page with banner and CTA | | /catalog |
+  Camper catalog with filters and favorites | | /catalog/:id | Camper detail
+  page with reviews and booking form |
+
+      State Management
+
+- Global state includes:
+- List of campers
+- Active filters
+- Favorites list (persisted across page reloads)
+- When applying new filters, previous results must be cleared to ensure
+  accuracy.
+
+  Features
+
+- Home → Catalog Navigation: "View Now" button redirects to catalog
+- Filtering (performed on backend):
+- Location (text input)
+- Body type (single selection)
+- Features (AC, kitchen, etc. – multiple selection)
+- Favorites:
+- Add campers to favorites
+- Persist favorites on page reload
+- Pricing:
+- Displayed as a single value (e.g., 8000.00)
+- Detail Navigation:
+- "Show more" button opens camper detail page in a new tab
+- Load More:
+- Button to fetch additional campers based on current filters
+- Reviews:
+- Display user reviews with 5-star rating system
+- Booking Form:
+- Submit booking request
+- Show success notification on submission
+
+      Camper Details
+
+  Use the following properties if available: Features: transmission, engine, AC,
+  bathroom, kitchen, TV, radio, refrigerator, microwave, gas, water
+  Specifications: form, length, width, height, tank, consumption
+
+      Design Guidelines
+
+- Follow the provided design mockup
+- Desktop layout required
+- Responsive design is optional but encouraged
+
+  Development Principles
+
+- Component-based architecture
+- Follow DRY (Don't Repeat Yourself) principle
+- Write clean, readable code with comments where necessary
+
+      Deployment
+
+  The project is deployed on Vercel
