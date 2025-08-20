@@ -1,7 +1,7 @@
 import CamperItem from '../../components/CamperItem/CamperItem';
 
 const CamperPage = () => {
-  <CamperItem />;
+  return <CamperItem />;
 };
 
 export default CamperPage;

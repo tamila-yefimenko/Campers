@@ -1,4 +1,3 @@
-import { Children } from 'react';
 import s from './Button.module.css';
 
 const Button = ({ children, onClick, type = 'button', className = '' }) => {

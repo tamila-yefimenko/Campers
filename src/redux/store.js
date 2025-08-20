@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { campersReducer } from './campers/slice';
-import { filterReducer } from './filters/slice';
+import campersReducer from './campers/slice';
+import filterReducer from './filters/slice';
 import storage from 'redux-persist/lib/storage';
 import {
   persistStore,

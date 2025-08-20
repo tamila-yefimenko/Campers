@@ -8,19 +8,19 @@ const Navigation = () => {
   };
 
   return (
-    <div className={s.navWrapper}>
-      <nav className={s.nav}>
-        <NavLink to="/" className={s.logo}>
-          TravelTrucks
-        </NavLink>
+    <nav className={s.nav}>
+      <NavLink to="/" className={s.logo}>
+        Travel<span className={s.span}>Trucks</span>
+      </NavLink>
+      <div className={s.wrapper}>
         <NavLink className={setActiveClass} to="/">
           Home
         </NavLink>
         <NavLink className={setActiveClass} to="/catalog">
           Catalog
         </NavLink>
-      </nav>
-    </div>
+      </div>
+    </nav>
   );
 };
 

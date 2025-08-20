@@ -1,5 +1,5 @@
 const CamperItem = () => {
-  <p>CamperItem</p>;
+  return <p>CamperItem</p>;
 };
 
 export default CamperItem;

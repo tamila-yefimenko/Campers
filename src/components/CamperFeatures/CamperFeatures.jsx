@@ -1,5 +1,5 @@
 const CamperFeatures = () => {
-  <p>Campers Features</p>;
+  return <p>Campers Features</p>;
 };
 
 export default CamperFeatures;

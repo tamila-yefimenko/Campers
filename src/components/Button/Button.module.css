@@ -1,5 +1,9 @@
 .button {
-  padding-top: 16px;
+  display: block;
+  padding: 0;
+  width: 166px;
+  height: 56px;
+  align-items: center;
   background-color: #e44848;
   color: #fff;
   font-weight: 500;
