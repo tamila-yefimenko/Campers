@@ -64,6 +64,10 @@
   gap: 8px;
 }
 
+.vehicleWrapper:not(:last-child) {
+  margin-bottom: 32px;
+}
+
 .vehicle {
   font-weight: 600;
   font-size: 20px;
@@ -97,4 +101,8 @@
 
 .vehicleButton input:checked + .content {
   border: 1px solid #e44848;
+}
+
+.formButton {
+  margin-top: 40px;
 }

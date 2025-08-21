@@ -15,6 +15,7 @@ const Icon = ({
       width={size}
       height={size}
       fill={color}
+      stroke={color}
       aria-hidden="true"
       {...(isProperty ? { fill: color } : { stroke: color, fill: 'none' })}
     >

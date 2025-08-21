@@ -62,7 +62,7 @@ const FiltersForm = ({ locationOptions = [], onSearch }) => {
           className={s.locationIcon}
           name="icon-map-1"
           size={20}
-          stroke="#101828"
+          color="#101828"
         />
       </div>
 
@@ -144,7 +144,65 @@ const FiltersForm = ({ locationOptions = [], onSearch }) => {
           </label>
         </div>
 
-        <div></div>
+        <h4 className={s.vehicle}>Vehicle type</h4>
+        <div className={s.vehicleWrapper}>
+          <label className={s.vehicleButton}>
+            <input
+              type="checkbox"
+              name="vehicleType"
+              value="panelTruck"
+              checked={vehicleType === 'panelTruck'}
+              onChange={() =>
+                handleChange(
+                  'vehicleType',
+                  vehicleType === 'panelTruck' ? '' : 'panelTruck'
+                )
+              }
+            />
+            <div className={s.content}>
+              <Icon name="icon-bi_grid-1x2" size={32} />
+              <p>Van</p>
+            </div>
+          </label>
+
+          <label className={s.vehicleButton}>
+            <input
+              type="checkbox"
+              name="vehicleType"
+              value="fully-integrated"
+              checked={vehicleType === 'fullyIntegrated'}
+              onChange={() =>
+                handleChange(
+                  'vehicleType',
+                  vehicleType === 'fullyIntegrated' ? '' : 'fullyIntegrated'
+                )
+              }
+            />
+            <div className={s.content}>
+              <Icon name="icon-bi_grid" size={32} />
+              <p>Fully Integrated</p>
+            </div>
+          </label>
+
+          <label className={s.vehicleButton}>
+            <input
+              type="checkbox"
+              name="vehicleType"
+              value="alcove"
+              checked={vehicleType === 'alcove'}
+              onChange={() =>
+                handleChange(
+                  'vehicleType',
+                  vehicleType === 'alcove' ? '' : 'alcove'
+                )
+              }
+            />
+            <div className={s.content}>
+              <Icon name="icon-bi_grid-3x3-gap" size={32} />
+              <p>Alcove</p>
+            </div>
+          </label>
+        </div>
       </div>
       <Button className={s.formButton} type="submit">
         Search
