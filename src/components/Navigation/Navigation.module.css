@@ -34,10 +34,6 @@
   text-decoration: none;
 }
 
-/* .link:not(:last-child) {
-  margin-right: 32px;
-} */
-
 .active {
   color: #d84343;
 }

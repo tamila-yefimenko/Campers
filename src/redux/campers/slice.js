@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchCampers } from './operations';
+import { fetchCampers, fetchFilteredCampers } from './operations';
 
 const initialState = {
   items: [],
+  filtered: [],
   page: 1,
-  limit: 10,
+  limit: 4,
   total: 0,
   isLoading: false,
   error: null,
@@ -16,6 +17,9 @@ const campersSlice = createSlice({
   reducers: {
     setPage: (state, action) => {
       state.page = action.payload;
+    },
+    resetPage: state => {
+      state.page = 1;
     },
   },
   extraReducers: builder => {
@@ -32,9 +36,22 @@ const campersSlice = createSlice({
       .addCase(fetchCampers.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
+      })
+      .addCase(fetchFilteredCampers.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(fetchFilteredCampers.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.items = action.payload.items;
+        state.total = action.payload.total;
+      })
+      .addCase(fetchFilteredCampers.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
       });
   },
 });
 
-export const { setPage } = campersSlice.actions;
+export const { setPage, resetPage } = campersSlice.actions;
 export default campersSlice.reducer;

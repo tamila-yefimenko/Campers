@@ -1,0 +1,100 @@
+.formWrapper {
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.locationWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.locationLabel,
+.locationselect {
+  display: block;
+}
+
+.locationLabel {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #6c717b;
+  text-align: left;
+  margin-bottom: 8px;
+}
+
+.locationSelect {
+  border-radius: 12px;
+  padding: 16px 48px;
+  width: 360px;
+  height: 56px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: #f7f7f7;
+  outline: none;
+  border: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.locationIcon {
+  position: absolute;
+  left: 20px;
+  top: 42px;
+}
+
+.filterTitle {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #475467;
+  text-align: left;
+  margin-bottom: 32px;
+}
+
+.vehicleWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.vehicle {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  text-align: left;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #dadde1;
+  margin-bottom: 24px;
+}
+
+.vehicleButton {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.vehicleButton input {
+  display: none;
+}
+
+.vehicleButton .content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 112px;
+  height: 96px;
+  border: 1px solid #dadde1;
+  border-radius: 12px;
+  transition: border 0.3s ease;
+}
+
+.vehicleButton input:checked + .content {
+  border: 1px solid #e44848;
+}

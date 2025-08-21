@@ -1,12 +1,12 @@
+import { useNavigate } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import s from './HomePage.module.css';
-import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
-  const navigate = useNavigate;
+  const navigate = useNavigate();
 
   const goToCampers = () => {
-    navigate('/campers');
+    navigate('/catalog');
   };
 
   return (

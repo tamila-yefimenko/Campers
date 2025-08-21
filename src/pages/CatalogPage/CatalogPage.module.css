@@ -1,18 +1,6 @@
-.contactWrapper {
-  padding: 5px;
-  max-width: 375px;
-  margin: 0 auto;
-  color: #2a003f;
-}
-
-@media (min-width: 768px) {
-  .contactWrapper {
-    min-width: 768px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .contactWrapper {
-    min-width: 1280px;
-  }
+.wrapper {
+  display: flex;
+  gap: 64px;
+  padding: 48px 64px;
+  background-color: #fff;
 }
