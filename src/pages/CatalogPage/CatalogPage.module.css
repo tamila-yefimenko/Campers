@@ -4,3 +4,29 @@
   padding: 48px 64px;
   background-color: #fff;
 }
+
+.noCampers {
+  width: 700px;
+  text-align: center;
+  font-size: 24px;
+  padding: 40px 10px;
+}
+
+.loadMore {
+  width: 145px;
+  background-color: #fff;
+  color: #101828;
+  border: 1px solid #dadde1;
+  margin: 40px auto 0;
+  transition: border 0.3s ease;
+}
+
+.loadMore:hover,
+.loadMore:active {
+  border: 1px solid #d84343;
+  background-color: #fff;
+}
+
+.showAllButton {
+  margin: 0 auto;
+}

@@ -13,9 +13,8 @@ export const selectTotalCampers = state => state.campers.total;
 export const selectPaginatedCampers = createSelector(
   [selectFiltered, selectPage, selectLimit],
   (filtered, page, limit) => {
-    const start = 0;
     const end = page * limit;
-    return filtered.slice(start, end);
+    return filtered.slice(0, end);
   }
 );
 

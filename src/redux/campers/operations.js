@@ -49,6 +49,9 @@ export const fetchFilteredCampers = createAsyncThunk(
       const { data } = await camperAPI.get(`/campers?${params}`);
       return data;
     } catch (error) {
+      if (error.response && error.response.status === 404) {
+        return { items: [], total: 0 };
+      }
       return thunkAPI.rejectWithValue(error.message);
     }
   }
