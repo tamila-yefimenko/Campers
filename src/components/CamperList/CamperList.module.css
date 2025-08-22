@@ -21,9 +21,17 @@
 }
 
 .titleWrapper {
+  position: relative;
   display: flex;
   justify-content: space-between;
+  padding-right: 36px;
   margin-bottom: 8px;
+}
+
+.favoriteIcon {
+  position: absolute;
+  top: 0;
+  right: 0px;
 }
 
 .camperName,
