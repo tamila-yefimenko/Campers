@@ -30,15 +30,18 @@ const FiltersForm = ({ locationOptions = [], onSearch }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    onSearch({
-      location,
-      AC,
-      kitchen,
-      TV,
-      bathroom,
-      transmission,
-      vehicleType,
-    });
+
+    const filtersToSend = {};
+
+    if (location) filtersToSend.location = location;
+    if (transmission) filtersToSend.transmission = transmission;
+    if (vehicleType) filtersToSend.form = vehicleType;
+    if (AC) filtersToSend.AC = true;
+    if (kitchen) filtersToSend.kitchen = true;
+    if (TV) filtersToSend.TV = true;
+    if (bathroom) filtersToSend.bathroom = true;
+
+    onSearch(filtersToSend);
   };
 
   return (
@@ -91,7 +94,7 @@ const FiltersForm = ({ locationOptions = [], onSearch }) => {
               name="transmission"
               value="automatic"
               checked={transmission === 'automatic'}
-              onChange={e =>
+              onChange={() =>
                 handleChange(
                   'transmission',
                   transmission === 'automatic' ? '' : 'automatic'
@@ -169,7 +172,7 @@ const FiltersForm = ({ locationOptions = [], onSearch }) => {
             <input
               type="checkbox"
               name="vehicleType"
-              value="fully-integrated"
+              value="fullyIntegrated"
               checked={vehicleType === 'fullyIntegrated'}
               onChange={() =>
                 handleChange(

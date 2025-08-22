@@ -22,14 +22,12 @@ const CatalogPage = () => {
   const dispatch = useDispatch();
   const allCampers = useSelector(selectItems);
   const page = useSelector(selectPage);
+  const campersPerPage = useSelector(selectLimit);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
-  const campersPerPage = useSelector(selectLimit);
 
-  // кемпери, які реально показуються
   const visibleCampers = allCampers.slice(0, page * campersPerPage);
 
-  // Унікальні локації для фільтра
   const locationOptions = Array.from(new Set(allCampers.map(c => c.location)));
 
   useEffect(() => {
@@ -39,8 +37,6 @@ const CatalogPage = () => {
   const handleLoadMore = () => {
     dispatch(setPage(page + 1));
   };
-  console.log(page);
-  console.log(visibleCampers);
 
   const handleSearch = filters => {
     dispatch(resetPage());

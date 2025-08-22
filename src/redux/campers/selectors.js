@@ -11,28 +11,15 @@ export const selectCampers = state => state.campers.items;
 export const selectTotalCampers = state => state.campers.total;
 
 export const selectPaginatedCampers = createSelector(
-  [selectItems, selectFiltered, selectPage, selectLimit],
-  (items, filtered, page, limit) => {
-    const data = filtered.length > 0 ? filtered : items;
-    const start = (page - 1) * limit;
+  [selectFiltered, selectPage, selectLimit],
+  (filtered, page, limit) => {
+    const start = 0;
     const end = page * limit;
-    return data.slice(start, end);
+    return filtered.slice(start, end);
   }
 );
 
-// Визначає кількість сторінок для пагінації
 export const selectTotalPages = createSelector(
-  [selectItems, selectFiltered, selectLimit],
-  (items, filtered, limit) => {
-    const data = filtered.length > 0 ? filtered : items;
-    return Math.ceil(data.length / limit);
-  }
-);
-
-export const selectHasMore = createSelector(
-  [selectItems, selectFiltered, selectPage, selectLimit],
-  (items, filtered, page, limit) => {
-    const data = filtered.length > 0 ? filtered : items;
-    return page * limit < data.length;
-  }
+  [selectFiltered, selectLimit],
+  (filtered, limit) => Math.ceil(filtered.length / limit)
 );
