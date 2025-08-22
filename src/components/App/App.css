@@ -1,17 +1,1 @@
-#root {
-  margin: 0 auto;
-  padding: 10px;
-  text-align: center;
-}
 
-@media (min-width: 768px) {
-  #root {
-    min-width: 768px;
-  }
-}
-
-@media (min-width: 1280px) {
-  #root {
-    min-width: 1280px;
-  }
-}

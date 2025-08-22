@@ -85,8 +85,6 @@ const CatalogPage = () => {
 
         {error && <ErrorMessage />}
       </div>
-
-      {/* {isLoading && <Loader />} */}
     </div>
   );
 };

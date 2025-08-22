@@ -2,24 +2,9 @@ import { Link } from 'react-router-dom';
 import s from './CamperList.module.css';
 import Button from '../Button/Button';
 import Icon from '../Icon/Icon';
+import { camperOptions } from '../../constants/camperOptions';
 
 const CamperList = ({ campers }) => {
-  const options = [
-    { key: 'AC', label: 'AC', icon: 'icon-wind' },
-    { key: 'bathroom', label: 'Bathroom', icon: 'icon-ph_shower' },
-    { key: 'kitchen', label: 'Kitchen', icon: 'icon-cup-hot' },
-    { key: 'TV', label: 'TV', icon: 'icon-tv' },
-    { key: 'radio', label: 'Radio', icon: 'icon-ui-radios' },
-    {
-      key: 'refrigerator',
-      label: 'Refrigerator',
-      icon: 'icon-solar_fridge-outline',
-    },
-    { key: 'microwave', label: 'Microwave', icon: 'icon-lucide_microwave' },
-    { key: 'gas', label: 'Gas', icon: 'icon-hugeicons_gas-stove' },
-    { key: 'water', label: 'Water', icon: 'icon-ion_water-outline' },
-  ];
-
   return (
     <ul className={s.camperList}>
       {campers.map(camper => (
@@ -67,7 +52,7 @@ const CamperList = ({ campers }) => {
                 : camper.description}
             </p>
             <ul className={s.camperOptions}>
-              {options.map(opt =>
+              {camperOptions.map(opt =>
                 camper[opt.key] ? (
                   <li key={opt.key} className={s.option}>
                     <Icon name={opt.icon} size={20} color="#101828" />
@@ -77,7 +62,7 @@ const CamperList = ({ campers }) => {
               )}
             </ul>
 
-            <Link to={`/campers/${camper.id}`} className={s.camperLink}>
+            <Link to={`/catalog/${camper.id}`} className={s.camperLink}>
               <Button>Show more</Button>
             </Link>
           </div>
