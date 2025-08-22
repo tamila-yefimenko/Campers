@@ -12,6 +12,7 @@ import {
 } from '../../redux/campers/selectors';
 import Icon from '../../components/Icon/Icon';
 import clsx from 'clsx';
+import BookingForm from '../../components/BookingForm/BookingForm';
 
 const CamperPage = () => {
   const { id } = useParams();
@@ -86,7 +87,11 @@ const CamperPage = () => {
           Reviews
         </NavLink>
       </nav>
-      <Outlet context={{ currentCamper }} />
+
+      <div className={s.bookingWrapper}>
+        <Outlet context={{ currentCamper }} />
+        <BookingForm />
+      </div>
 
       {isLoading && <Loader />}
       {error && <ErrorMessage />}

@@ -76,3 +76,8 @@
 .active {
   border-bottom: 5px solid #e44848;
 }
+
+.bookingWrapper {
+  display: flex;
+  gap: 40px;
+}

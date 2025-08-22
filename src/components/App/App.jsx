@@ -29,7 +29,7 @@ function App() {
           </Route>
         </Routes>
       </div>
-      <Toaster />
+      <Toaster position="top-right" />
     </Suspense>
   );
 }

@@ -1,0 +1,81 @@
+.bookingWrapper {
+  width: 641px;
+  padding: 44px 56px;
+  margin-top: 44px;
+  border: 1px solid #dadde1;
+  border-radius: 10px;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+.formText {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #6c717b;
+  margin-bottom: 24px;
+}
+
+.inputWrapper {
+  width: 100%;
+  position: relative;
+}
+
+.inputWrapper:not(:last-of-type) {
+  margin-bottom: 14px;
+}
+
+.inputWrapper input,
+.inputWrapper textarea {
+  display: block;
+  width: 100%;
+  border: none;
+  padding: 18px;
+  background-color: #f7f7f7;
+  transition: color 0.3s ease;
+}
+
+.inputWrapper input:focus::placeholder,
+.inputWrapper textarea:focus::placeholder {
+  color: #101828;
+}
+
+.inputWrapper input[type='date'] {
+  cursor: pointer;
+}
+
+.inputWrapper input::placeholder,
+.inputWrapper textarea::placeholder {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #6c717b;
+}
+
+.inputWrapper input {
+  border-radius: 12px;
+  height: 60px;
+}
+
+.inputWrapper textarea {
+  height: 118px;
+  border-radius: 10px;
+  resize: none;
+}
+
+.error {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #e44848;
+}
+
+.formButton {
+  margin: 24px auto 0;
+}
