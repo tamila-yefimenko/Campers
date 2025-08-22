@@ -1,0 +1,50 @@
+.reviewsWrapper {
+  width: 631px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+  margin-top: 56px;
+}
+
+.nameWrapper {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 60px;
+  width: 60px;
+  height: 60px;
+  background-color: #f2f4f7;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33333;
+  color: #e44848;
+}
+
+.reviewerName {
+  margin-bottom: 4px;
+}
+
+.star {
+  fill: #f2f4f7;
+  stroke: none;
+}
+
+.starActive {
+  fill: #ffc531;
+  stroke: none;
+}
+
+.rewiewText {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #475467;
+  stroke: none;
+}
