@@ -1,13 +1,9 @@
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import s from './CamperList.module.css';
-import { selectPaginatedCampers } from '../../redux/campers/selectors';
 import Button from '../Button/Button';
 import Icon from '../Icon/Icon';
 
-const CamperList = () => {
-  const campers = useSelector(selectPaginatedCampers);
-
+const CamperList = ({ campers }) => {
   const options = [
     { key: 'AC', label: 'AC', icon: 'icon-wind' },
     { key: 'bathroom', label: 'Bathroom', icon: 'icon-ph_shower' },
