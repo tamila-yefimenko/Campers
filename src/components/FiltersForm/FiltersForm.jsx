@@ -12,6 +12,7 @@ import {
 import s from './FiltersForm.module.css';
 import Button from '../Button/Button';
 import Icon from '../Icon/Icon';
+import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
 const FiltersForm = ({ locationOptions = [], onSearch }) => {
   const dispatch = useDispatch();
@@ -75,136 +76,96 @@ const FiltersForm = ({ locationOptions = [], onSearch }) => {
         <h4 className={s.vehicle}>Vehicle equipment</h4>
 
         <div className={s.vehicleWrapper}>
-          <label className={s.vehicleButton}>
-            <input
-              type="checkbox"
-              name="AC"
-              checked={AC}
-              onChange={e => handleChange('AC', e.target.checked)}
-            />
-            <div className={s.content}>
-              <Icon name="icon-wind" size={32} />
-              <p>AC</p>
-            </div>
-          </label>
+          <FilterCheckbox
+            inputName="AC"
+            checked={AC}
+            onChange={e => handleChange('AC', e.target.checked)}
+            name="icon-wind"
+            children="AC"
+          />
 
-          <label className={s.vehicleButton}>
-            <input
-              type="checkbox"
-              name="transmission"
-              value="automatic"
-              checked={transmission === 'automatic'}
-              onChange={() =>
-                handleChange(
-                  'transmission',
-                  transmission === 'automatic' ? '' : 'automatic'
-                )
-              }
-            />
-            <div className={s.content}>
-              <Icon name="icon-diagram" size={32} />
-              <p>Automatic</p>
-            </div>
-          </label>
+          <FilterCheckbox
+            inputName="transmission"
+            value="automatic"
+            checked={transmission === 'automatic'}
+            onChange={() =>
+              handleChange(
+                'transmission',
+                transmission === 'automatic' ? '' : 'automatic'
+              )
+            }
+            name="icon-diagram"
+            children="Automatic"
+          />
 
-          <label className={s.vehicleButton}>
-            <input
-              type="checkbox"
-              name="kitchen"
-              checked={kitchen}
-              onChange={e => handleChange('kitchen', e.target.checked)}
-            />
-            <div className={s.content}>
-              <Icon name="icon-cup-hot" size={32} />
-              <p>Kitchen</p>
-            </div>
-          </label>
+          <FilterCheckbox
+            inputName="kitchen"
+            checked={kitchen}
+            onChange={e => handleChange('kitchen', e.target.checked)}
+            name="icon-cup-hot"
+            children="Kitchen"
+          />
 
-          <label className={s.vehicleButton}>
-            <input
-              type="checkbox"
-              name="TV"
-              checked={TV}
-              onChange={e => handleChange('TV', e.target.checked)}
-            />
-            <div className={s.content}>
-              <Icon name="icon-tv" size={32} />
-              <p>TV</p>
-            </div>
-          </label>
+          <FilterCheckbox
+            inputName="TV"
+            checked={TV}
+            onChange={e => handleChange('TV', e.target.checked)}
+            name="icon-tv"
+            children="TV"
+          />
 
-          <label className={s.vehicleButton}>
-            <input
-              type="checkbox"
-              name="bathroom"
-              checked={bathroom}
-              onChange={e => handleChange('bathroom', e.target.checked)}
-            />
-            <div className={s.content}>
-              <Icon name="icon-ph_shower" size={32} />
-              <p>Bathroom</p>
-            </div>
-          </label>
+          <FilterCheckbox
+            inputName="bathroom"
+            checked={bathroom}
+            onChange={e => handleChange('bathroom', e.target.checked)}
+            name="icon-ph_shower"
+            children="Bathroom"
+          />
         </div>
 
         <h4 className={s.vehicle}>Vehicle type</h4>
         <div className={s.vehicleWrapper}>
-          <label className={s.vehicleButton}>
-            <input
-              type="checkbox"
-              name="vehicleType"
-              value="panelTruck"
-              checked={vehicleType === 'panelTruck'}
-              onChange={() =>
-                handleChange(
-                  'vehicleType',
-                  vehicleType === 'panelTruck' ? '' : 'panelTruck'
-                )
-              }
-            />
-            <div className={s.content}>
-              <Icon name="icon-bi_grid-1x2" size={32} />
-              <p>Van</p>
-            </div>
-          </label>
+          <FilterCheckbox
+            inputName="vehicleType"
+            value="panelTruck"
+            checked={vehicleType === 'panelTruck'}
+            onChange={() =>
+              handleChange(
+                'vehicleType',
+                vehicleType === 'panelTruck' ? '' : 'panelTruck'
+              )
+            }
+            name="icon-bi_grid-1x2"
+            children="Van"
+          />
 
-          <label className={s.vehicleButton}>
-            <input
-              type="checkbox"
-              name="vehicleType"
-              value="fullyIntegrated"
-              checked={vehicleType === 'fullyIntegrated'}
-              onChange={() =>
-                handleChange(
-                  'vehicleType',
-                  vehicleType === 'fullyIntegrated' ? '' : 'fullyIntegrated'
-                )
-              }
-            />
-            <div className={s.content}>
-              <Icon name="icon-bi_grid" size={32} />
-              <p>Fully Integrated</p>
-            </div>
-          </label>
+          <FilterCheckbox
+            inputName="vehicleType"
+            value="fullyIntegrated"
+            checked={vehicleType === 'fullyIntegrated'}
+            onChange={() =>
+              handleChange(
+                'vehicleType',
+                vehicleType === 'fullyIntegrated' ? '' : 'fullyIntegrated'
+              )
+            }
+            name="icon-bi_grid"
+            children="Fully Integrated"
+          />
 
-          <label className={s.vehicleButton}>
-            <input
-              type="checkbox"
-              name="vehicleType"
-              value="alcove"
-              checked={vehicleType === 'alcove'}
-              onChange={() =>
-                handleChange(
-                  'vehicleType',
-                  vehicleType === 'alcove' ? '' : 'alcove'
-                )
-              }
-            />
-            <div className={s.content}>
-              <Icon name="icon-bi_grid-3x3-gap" size={32} />
-              <p>Alcove</p>
-            </div>
-          </label>
+          <FilterCheckbox
+            inputName="vehicleType"
+            value="alcove"
+            checked={vehicleType === 'alcove'}
+            onChange={() =>
+              handleChange(
+                'vehicleType',
+                vehicleType === 'alcove' ? '' : 'alcove'
+              )
+            }
+            name="icon-bi_grid-3x3-gap"
+            children="Alcove"
+          />
         </div>
       </div>
       <Button className={s.formButton} type="submit">
