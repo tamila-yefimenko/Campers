@@ -43,25 +43,14 @@ const CamperList = ({ campers }) => {
               </div>
               <div className={s.rewiewWrapper}>
                 <p className={s.camperRating}>
-                  {camper.reviews && camper.reviews.length > 0 ? (
-                    <>
-                      <Icon
-                        name="icon-Property-1Default-1-1"
-                        size={16}
-                        color="#ffc531"
-                      />
-                      {camper.rating} ({camper.reviews.length} Rewiews)
-                    </>
-                  ) : (
-                    <>
-                      <Icon
-                        name="icon-Property-1Default-1-1"
-                        size={16}
-                        color="#f2f4f7"
-                      />
-                      (No Rating)
-                    </>
-                  )}
+                  <Icon
+                    name="icon-Property-1Default-1-1"
+                    size={16}
+                    color={camper.reviews?.length ? '#ffc531' : '#f2f4f7'}
+                  />
+                  {camper.reviews?.length
+                    ? `${camper.rating} (${camper.reviews.length} Reviews)`
+                    : '(No Rating)'}
                 </p>
                 <p className={s.camperLocation}>
                   <Icon name="icon-map-1" size={16} />

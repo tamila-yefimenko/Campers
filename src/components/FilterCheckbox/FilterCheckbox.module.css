@@ -13,6 +13,9 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
   width: 112px;
   height: 96px;
   border: 1px solid #dadde1;

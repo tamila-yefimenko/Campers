@@ -37,33 +37,25 @@ const CamperPage = () => {
   return (
     <div className={s.detailsWrapper}>
       <h2 className={s.camperName}>{currentCamper.name}</h2>
+
       <div className={s.rewiewWrapper}>
         <p className={s.camperRating}>
-          {currentCamper.reviews && currentCamper.reviews.length > 0 ? (
-            <>
-              <Icon
-                name="icon-Property-1Default-1-1"
-                size={16}
-                color="#ffc531"
-              />
-              {currentCamper.rating} ({currentCamper.reviews.length} Rewiews)
-            </>
-          ) : (
-            <>
-              <Icon
-                name="icon-Property-1Default-1-1"
-                size={16}
-                color="#f2f4f7"
-              />
-              (No Rating)
-            </>
-          )}
+          <Icon
+            name="icon-Property-1Default-1-1"
+            size={16}
+            color={currentCamper.reviews?.length ? '#ffc531' : '#f2f4f7'}
+          />
+          {currentCamper.reviews?.length
+            ? `${currentCamper.rating} (${currentCamper.reviews.length} Reviews)`
+            : '(No Rating)'}
         </p>
+
         <p className={s.camperLocation}>
           <Icon name="icon-map-1" size={16} />
           {currentCamper.location}
         </p>
       </div>
+
       <p className={s.camperPrice}>€ {currentCamper.price.toFixed(2)}</p>
 
       <div className={s.gallery}>

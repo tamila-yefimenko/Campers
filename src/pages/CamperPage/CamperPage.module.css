@@ -1,5 +1,5 @@
 .detailsWrapper {
-  /* max-width: 1400px; */
+  max-width: 1440px;
   padding: 48px 64px 80px;
   margin: 0 auto;
 }
@@ -61,7 +61,6 @@
   display: flex;
   gap: 40px;
   border-bottom: 1px solid #dadde1;
-  /* padding-bottom: 24px; */
 }
 
 .link {
@@ -80,4 +79,5 @@
 .bookingWrapper {
   display: flex;
   gap: 40px;
+  justify-content: space-between;
 }
