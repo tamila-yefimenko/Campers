@@ -1,8 +1,10 @@
 .wrapper {
   display: flex;
+  max-width: 1440px;
   gap: 64px;
   padding: 48px 64px;
   background-color: #fff;
+  margin: 0 auto;
 }
 
 .noCampers {

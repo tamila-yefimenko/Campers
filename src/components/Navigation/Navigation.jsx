@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import clsx from 'clsx';
 import s from './Navigation.module.css';
-import Icon from '../Icon/Icon';
 
 const Navigation = () => {
   const setActiveClass = ({ isActive }) => {
