@@ -52,9 +52,13 @@ const FiltersForm = ({ locationOptions = [], onSearch }) => {
           Location:
           <select
             className={s.locationSelect}
-            value={location || locationOptions[0]}
+            value={location || ''}
             onChange={e => handleChange('location', e.target.value)}
+            style={{ color: location ? '#101828' : '#6c717b' }}
           >
+            <option value="" disabled hidden>
+              City
+            </option>
             {locationOptions.map(loc => (
               <option key={loc} value={loc}>
                 {loc}

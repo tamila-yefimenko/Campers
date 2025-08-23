@@ -4,6 +4,7 @@ import s from './FavoritesPage.module.css';
 import CamperList from '../../components/CamperList/CamperList';
 import { useEffect } from 'react';
 import { fetchCampers } from '../../redux/campers/operations';
+import { selectFavorites } from '../../redux/favorites/selectors';
 
 const FavoritesPage = () => {
   const dispatch = useDispatch();
@@ -13,17 +14,15 @@ const FavoritesPage = () => {
   }, [dispatch]);
 
   const allCampers = useSelector(selectItems);
-
-  const favoriteIds =
-    JSON.parse(localStorage.getItem('persist:favorites')).items || [];
+  const favorites = useSelector(selectFavorites);
 
   const favoriteCampers = allCampers.filter(camper =>
-    favoriteIds.includes(camper.id)
+    favorites.includes(camper.id)
   );
 
   return (
-    <div className={s.wrapper}>
-      <h2>Your Favorite Campers</h2>
+    <div className={s.favoritesWrapper}>
+      <h2 className={s.favoriteTitle}>Your Favorite Campers</h2>
       {favoriteCampers.length === 0 ? (
         <p>You have no favorite campers yet.</p>
       ) : (

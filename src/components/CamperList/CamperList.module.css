@@ -4,6 +4,7 @@
 
 .camperItem {
   display: flex;
+  width: 100%;
   border: 1px solid #dadde1;
   border-radius: 20px;
   padding: 24px;
@@ -20,7 +21,12 @@
   object-fit: cover;
 }
 
+.camperWrapper {
+  width: 100%;
+}
+
 .titleWrapper {
+  width: 100%;
   position: relative;
   display: flex;
   justify-content: space-between;
