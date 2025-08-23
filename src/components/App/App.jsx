@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import Layout from '../Layout/Layout';
 import { Toaster } from 'react-hot-toast';
 import HomePage from '../../pages/HomePage/HomePage';
+import FavoritesPage from '../../pages/FavoritesPage/FavoritesPage';
 
 const CatalogPage = lazy(() => import('../../pages/CatalogPage/CatalogPage'));
 const CamperPage = lazy(() => import('../../pages/CamperPage/CamperPage'));
@@ -25,6 +26,7 @@ function App() {
               <Route path="features" element={<CamperFeatures />} />
               <Route path="rewiews" element={<CamperRewiew />} />
             </Route>
+            <Route path="/favorites" element={<FavoritesPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>
