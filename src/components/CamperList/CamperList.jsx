@@ -30,7 +30,7 @@ const CamperList = ({ campers }) => {
               <div className={s.titleWrapper}>
                 <h3 className={s.camperName}>{camper.name}</h3>
                 <p className={s.camperPrice}>€{camper.price.toFixed(2)}</p>
-                <div
+                <button
                   className={s.favoriteIcon}
                   onClick={() => handleFavorite(camper.id)}
                 >
@@ -39,7 +39,7 @@ const CamperList = ({ campers }) => {
                     size={26}
                     color={isFavorite ? '#d84343' : '#101828'}
                   />
-                </div>
+                </button>
               </div>
               <div className={s.rewiewWrapper}>
                 <p className={s.camperRating}>
