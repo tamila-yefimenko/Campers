@@ -1,6 +1,6 @@
 import './App.css';
 import { lazy, Suspense } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Layout from '../Layout/Layout';
 import { Toaster } from 'react-hot-toast';
 import HomePage from '../../pages/HomePage/HomePage';
@@ -23,6 +23,7 @@ function App() {
             <Route index element={<HomePage />} />
             <Route path="/catalog" element={<CatalogPage />} />
             <Route path="/catalog/:id" element={<CamperPage />}>
+              <Route index element={<Navigate to="features" replace />} />
               <Route path="features" element={<CamperFeatures />} />
               <Route path="rewiews" element={<CamperRewiew />} />
             </Route>
