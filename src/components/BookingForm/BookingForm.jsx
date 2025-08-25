@@ -5,6 +5,9 @@ import Button from '../Button/Button';
 import toast from 'react-hot-toast';
 import { useSelector } from 'react-redux';
 import { selectCurrentCamper } from '../../redux/campers/selectors';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { useState } from 'react';
 
 const BookingSchema = Yup.object().shape({
   name: Yup.string()
@@ -12,31 +15,42 @@ const BookingSchema = Yup.object().shape({
     .max(50, 'Too Long!')
     .required('Required'),
   email: Yup.string().email('Invalid email').required('Required'),
-  date: Yup.date().required('Required'),
+  dateRange: Yup.array()
+    .of(Yup.date().required())
+    .min(2, 'Please select start and end date')
+    .required('Required'),
   comment: Yup.string().max(500, 'Too Long!'),
 });
 
 const BookingForm = () => {
   const currentCamper = useSelector(selectCurrentCamper);
+  const [isOpen, setIsOpen] = useState(false);
 
   const initialValues = {
     name: '',
     email: '',
-    date: '',
+    dateRange: [null, null],
     comment: '',
   };
 
   const handleSubmit = (values, actions) => {
+    const [startDate, endDate] = values.dateRange;
+
     const bookingData = {
       camperId: currentCamper.id,
       camperName: currentCamper.name,
-      ...values,
+      startDate,
+      endDate,
+      comment: values.comment,
+      name: values.name,
+      email: values.email,
     };
 
     console.log('Booking data:', bookingData);
 
     toast.success(
-      `You have successfully booked the camper ${currentCamper.name}!`
+      `You have successfully booked ${currentCamper.name} 
+      from ${startDate?.toLocaleDateString()} to ${endDate?.toLocaleDateString()}!`
     );
 
     actions.resetForm();
@@ -54,46 +68,54 @@ const BookingForm = () => {
         validationSchema={BookingSchema}
         onSubmit={handleSubmit}
       >
-        <Form className={s.bookingForm}>
-          <div className={s.inputWrapper}>
-            <Field type="text" name="name" id="name" placeholder="Name*" />
-            <ErrorMessage name="name" component="span" className={s.error} />
-          </div>
+        {({ setFieldValue, values }) => (
+          <Form className={s.bookingForm}>
+            <div className={s.inputWrapper}>
+              <Field type="text" name="name" placeholder="Name*" />
+              <ErrorMessage name="name" component="span" className={s.error} />
+            </div>
 
-          <div className={s.inputWrapper}>
-            <Field type="email" name="email" id="email" placeholder="Email*" />
-            <ErrorMessage name="email" component="span" className={s.error} />
-          </div>
+            <div className={s.inputWrapper}>
+              <Field type="email" name="email" placeholder="Email*" />
+              <ErrorMessage name="email" component="span" className={s.error} />
+            </div>
 
-          <div className={s.inputWrapper}>
-            <Field
-              type="text"
-              name="date"
-              id="date"
-              onFocus={e => (e.target.type = 'date')}
-              onBlur={e => {
-                if (!e.target.value) e.target.type = 'text';
-              }}
-              placeholder="Booking date*"
-              min={new Date().toISOString().split('T')[0]}
-            />
-            <ErrorMessage name="date" component="span" className={s.error} />
-          </div>
+            <div className={s.inputWrapper}>
+              <DatePicker
+                selectsRange
+                startDate={values.dateRange[0]}
+                endDate={values.dateRange[1]}
+                onChange={update => setFieldValue('dateRange', update)}
+                minDate={new Date()}
+                placeholderText={
+                  isOpen ? 'Select a day after today' : 'Select booking dates*'
+                }
+                className={s.dateInput}
+                wrapperClassName={s.dateInputWrapper}
+                onCalendarOpen={() => setIsOpen(true)}
+                onCalendarClose={() => setIsOpen(false)}
+              />
+              <ErrorMessage
+                name="dateRange"
+                component="span"
+                className={s.error}
+              />
+            </div>
 
-          <div className={s.inputWrapper}>
-            <Field
-              as="textarea"
-              name="comment"
-              id="comment"
-              placeholder="Comment"
-            />
-            <ErrorMessage name="comment" component="span" className={s.error} />
-          </div>
+            <div className={s.inputWrapper}>
+              <Field as="textarea" name="comment" placeholder="Comment" />
+              <ErrorMessage
+                name="comment"
+                component="span"
+                className={s.error}
+              />
+            </div>
 
-          <Button className={s.formButton} type="submit">
-            Send
-          </Button>
-        </Form>
+            <Button className={s.formButton} type="submit">
+              Send
+            </Button>
+          </Form>
+        )}
       </Formik>
     </div>
   );

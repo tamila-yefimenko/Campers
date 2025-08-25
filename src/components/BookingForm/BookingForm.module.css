@@ -45,8 +45,14 @@
   color: #101828;
 }
 
-.inputWrapper input[type='date'] {
+.dateInput {
+  width: 100%;
   cursor: pointer;
+}
+
+.dateInputWrapper {
+  display: block;
+  width: 100%;
 }
 
 .inputWrapper input::placeholder,
