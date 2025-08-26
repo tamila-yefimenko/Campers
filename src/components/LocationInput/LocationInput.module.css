@@ -1,0 +1,73 @@
+.locationWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  margin-bottom: 45px;
+  width: 100%;
+}
+
+.locationLabel {
+  display: flex;
+  flex-direction: column;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #6c717b;
+  text-align: left;
+  gap: 8px;
+}
+
+.locationInput {
+  width: 100%;
+  height: 56px;
+  padding: 16px 48px 16px 48px;
+  border-radius: 12px;
+  background-color: #f7f7f7;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #101828;
+}
+
+.locationInput::placeholder {
+  color: #6c717b;
+}
+
+.locationIcon {
+  position: absolute;
+  left: 20px;
+  top: 70%;
+  transform: translateY(-70%);
+  pointer-events: none;
+}
+
+.suggestionsList {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  margin: 4px 0 0 0;
+  padding: 4px 0;
+  list-style: none;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.suggestionItem {
+  padding: 6px 16px;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #101828;
+}
+
+.suggestionItem:hover {
+  background-color: #f0f0f0;
+}

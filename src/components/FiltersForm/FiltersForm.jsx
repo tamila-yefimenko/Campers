@@ -11,8 +11,8 @@ import {
 } from '../../redux/filters/selectors';
 import s from './FiltersForm.module.css';
 import Button from '../Button/Button';
-import Icon from '../Icon/Icon';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
+import LocationInput from '../LocationInput/LocationInput';
 
 const FiltersForm = ({ locationOptions = [], onSearch }) => {
   const dispatch = useDispatch();
@@ -47,32 +47,7 @@ const FiltersForm = ({ locationOptions = [], onSearch }) => {
 
   return (
     <form className={s.formWrapper} onSubmit={handleSubmit}>
-      <div className={s.locationWrapper}>
-        <label className={s.locationLabel}>
-          Location:
-          <select
-            className={s.locationSelect}
-            value={location || ''}
-            onChange={e => handleChange('location', e.target.value)}
-            style={{ color: location ? '#101828' : '#6c717b' }}
-          >
-            <option value="" disabled hidden>
-              City
-            </option>
-            {locationOptions.map(loc => (
-              <option key={loc} value={loc}>
-                {loc}
-              </option>
-            ))}
-          </select>
-        </label>
-        <Icon
-          className={s.locationIcon}
-          name="icon-map-1"
-          size={20}
-          color="#101828"
-        />
-      </div>
+      <LocationInput locationOptions={locationOptions} />
 
       <div className={s.vehEqv}>
         <h3 className={s.filterTitle}>Filters</h3>
