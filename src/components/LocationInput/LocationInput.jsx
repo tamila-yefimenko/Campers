@@ -45,7 +45,7 @@ const LocationInput = ({ locationOptions = [] }) => {
         className={s.locationIcon}
         name="icon-map-1"
         size={20}
-        color="#101828"
+        color={query ? '#101828' : '#6c717b'}
       />
 
       {showSuggestions && (
