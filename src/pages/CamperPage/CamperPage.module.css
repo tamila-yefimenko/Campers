@@ -42,12 +42,14 @@
   display: flex;
   gap: 48px;
   margin-bottom: 28px;
+  height: 312px;
 }
 
 .camperImage {
   max-width: 292px;
-  height: 312px;
-  object-fit: cover;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: none;
 }
 
 .description {

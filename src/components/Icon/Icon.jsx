@@ -6,18 +6,17 @@ const Icon = ({
   size = 16,
   color = 'currentColor',
   className = '',
+  type = 'fill',
 }) => {
-  const isProperty = name?.includes?.('Property');
-
   return (
     <svg
       className={className}
       width={size}
       height={size}
-      fill={color}
-      stroke={color}
       aria-hidden="true"
-      {...(isProperty ? { fill: color } : { stroke: color, fill: 'none' })}
+      {...(type === 'stroke'
+        ? { stroke: color, fill: 'none' }
+        : { fill: color })}
     >
       {name && <use xlinkHref={`${sprite}#${name}`} />}
     </svg>
