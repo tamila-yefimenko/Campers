@@ -1,13 +1,15 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { selectItems } from '../../redux/campers/selectors';
+import { selectIsLoading, selectItems } from '../../redux/campers/selectors';
 import s from './FavoritesPage.module.css';
 import CamperList from '../../components/CamperList/CamperList';
 import { useEffect } from 'react';
 import { fetchCampers } from '../../redux/campers/operations';
 import { selectFavorites } from '../../redux/favorites/selectors';
+import Loader from '../../components/Loader/Loader';
 
 const FavoritesPage = () => {
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
     dispatch(fetchCampers());
@@ -23,7 +25,9 @@ const FavoritesPage = () => {
   return (
     <div className={s.favoritesWrapper}>
       <h2 className={s.favoriteTitle}>Your Favorite Campers</h2>
-      {favoriteCampers.length === 0 ? (
+      {isLoading ? (
+        <Loader />
+      ) : favoriteCampers.length === 0 ? (
         <p>You have no favorite campers yet.</p>
       ) : (
         <CamperList campers={favoriteCampers} />
