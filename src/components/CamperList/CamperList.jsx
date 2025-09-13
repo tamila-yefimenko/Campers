@@ -11,8 +11,8 @@ const CamperList = ({ campers }) => {
   const dispatch = useDispatch();
   const favorites = useSelector(selectFavorites);
 
-  const handleFavorite = camperId => {
-    dispatch(toggleFavorite(camperId));
+  const handleFavorite = camper => {
+    dispatch(toggleFavorite(camper));
   };
 
   return (
@@ -58,8 +58,8 @@ const CamperList = ({ campers }) => {
                 </p>
               </div>
               <p className={s.camperDescription}>
-                {camper.description.length > 60
-                  ? camper.description.slice(0, 60) + '…'
+                {camper.description.length > 65
+                  ? camper.description.slice(0, 65) + '…'
                   : camper.description}
               </p>
               <ul className={s.camperOptions}>

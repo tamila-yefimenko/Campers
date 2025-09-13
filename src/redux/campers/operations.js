@@ -5,25 +5,31 @@ export const camperAPI = axios.create({
   baseURL: 'https://66b1f8e71ca8ad33d4f5f63e.mockapi.io/',
 });
 
-export const fetchCampers = createAsyncThunk(
+export const fetchAllCampers = createAsyncThunk(
   'campers/fetchAll',
-  async (_, { rejectWithValue }) => {
+  async (_, thunkAPI) => {
     try {
       const { data } = await camperAPI.get('/campers');
-      return data;
+      return data.items;
     } catch (error) {
-      return rejectWithValue(
-        error.response?.data?.message || 'Failed to fetch campers'
-      );
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
 export const fetchFilteredCampers = createAsyncThunk(
   'campers/fetchFiltered',
-  async (filters, thunkAPI) => {
+  async (_, thunkAPI) => {
     try {
-      const params = new URLSearchParams(filters).toString();
+      const state = thunkAPI.getState().campers;
+      const { filters, page, limit } = state;
+
+      const params = new URLSearchParams({
+        ...filters,
+        page,
+        limit,
+      }).toString();
+
       const { data } = await camperAPI.get(`/campers?${params}`);
       return data;
     } catch (error) {

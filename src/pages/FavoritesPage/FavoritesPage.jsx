@@ -1,25 +1,26 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { selectIsLoading, selectItems } from '../../redux/campers/selectors';
-import s from './FavoritesPage.module.css';
-import CamperList from '../../components/CamperList/CamperList';
 import { useEffect } from 'react';
-import { fetchCampers } from '../../redux/campers/operations';
+import { fetchAllCampers } from '../../redux/campers/operations';
+import { selectItems, selectIsLoading } from '../../redux/campers/selectors';
 import { selectFavorites } from '../../redux/favorites/selectors';
+import CamperList from '../../components/CamperList/CamperList';
 import Loader from '../../components/Loader/Loader';
+import s from './FavoritesPage.module.css';
 
 const FavoritesPage = () => {
   const dispatch = useDispatch();
+  const allCampers = useSelector(selectItems);
   const isLoading = useSelector(selectIsLoading);
+  const favoritesIds = useSelector(selectFavorites);
 
   useEffect(() => {
-    dispatch(fetchCampers());
-  }, [dispatch]);
-
-  const allCampers = useSelector(selectItems);
-  const favorites = useSelector(selectFavorites);
+    if (allCampers.length === 0) {
+      dispatch(fetchAllCampers());
+    }
+  }, [dispatch, allCampers.length]);
 
   const favoriteCampers = allCampers.filter(camper =>
-    favorites.includes(camper.id)
+    favoritesIds.includes(camper.id)
   );
 
   return (

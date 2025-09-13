@@ -1,48 +1,31 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { setFilter } from '../../redux/filters/slice';
-import {
-  selectLocation,
-  selectAC,
-  selectKitchen,
-  selectTV,
-  selectBathroom,
-  selectTransmission,
-  selectVehicleType,
-} from '../../redux/filters/selectors';
+import { setFilters } from '../../redux/campers/slice';
 import s from './FiltersForm.module.css';
 import Button from '../Button/Button';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import LocationInput from '../LocationInput/LocationInput';
+import { selectFilters } from '../../redux/campers/selectors';
 
 const FiltersForm = ({ locationOptions = [], onSearch }) => {
   const dispatch = useDispatch();
-
-  const location = useSelector(selectLocation);
-  const AC = useSelector(selectAC);
-  const kitchen = useSelector(selectKitchen);
-  const TV = useSelector(selectTV);
-  const bathroom = useSelector(selectBathroom);
-  const transmission = useSelector(selectTransmission);
-  const vehicleType = useSelector(selectVehicleType);
-
-  const handleChange = (key, value) => {
-    dispatch(setFilter({ key, value }));
-  };
+  const filters = useSelector(selectFilters);
+  const { AC, kitchen, TV, bathroom, transmission, form } = filters;
 
   const handleSubmit = e => {
     e.preventDefault();
 
-    const filtersToSend = {};
+    const cleanedFilters = Object.fromEntries(
+      Object.entries(filters).filter(([_, value]) => {
+        if (typeof value === 'boolean') return value;
+        return value !== '';
+      })
+    );
 
-    if (location) filtersToSend.location = location;
-    if (transmission) filtersToSend.transmission = transmission;
-    if (vehicleType) filtersToSend.form = vehicleType;
-    if (AC) filtersToSend.AC = true;
-    if (kitchen) filtersToSend.kitchen = true;
-    if (TV) filtersToSend.TV = true;
-    if (bathroom) filtersToSend.bathroom = true;
+    onSearch(cleanedFilters);
+  };
 
-    onSearch(filtersToSend);
+  const handleChange = (key, value) => {
+    dispatch(setFilters({ ...filters, [key]: value }));
   };
 
   return (
@@ -53,14 +36,13 @@ const FiltersForm = ({ locationOptions = [], onSearch }) => {
         <h3 className={s.filterTitle}>Filters</h3>
 
         <h4 className={s.vehicle}>Vehicle equipment</h4>
-
         <div className={s.vehicleWrapper}>
           <FilterCheckbox
             inputName="AC"
-            checked={AC}
+            checked={AC ?? false}
             onChange={e => handleChange('AC', e.target.checked)}
             name="icon-wind"
-            children="AC"
+            children={'AC'}
           />
 
           <FilterCheckbox
@@ -74,79 +56,74 @@ const FiltersForm = ({ locationOptions = [], onSearch }) => {
               )
             }
             name="icon-diagram"
-            children="Automatic"
+            children={'Automatic'}
           />
 
           <FilterCheckbox
             inputName="kitchen"
-            checked={kitchen}
+            checked={kitchen ?? false}
             onChange={e => handleChange('kitchen', e.target.checked)}
             name="icon-cup-hot"
-            children="Kitchen"
+            children={'Kitchen'}
           />
 
           <FilterCheckbox
             inputName="TV"
-            checked={TV}
+            checked={TV ?? false}
             onChange={e => handleChange('TV', e.target.checked)}
             name="icon-tv"
-            children="TV"
+            children={'TV'}
           />
 
           <FilterCheckbox
             inputName="bathroom"
-            checked={bathroom}
+            checked={bathroom ?? false}
             onChange={e => handleChange('bathroom', e.target.checked)}
             name="icon-ph_shower"
-            children="Bathroom"
+            children={'Bathroom'}
           />
         </div>
 
         <h4 className={s.vehicle}>Vehicle type</h4>
         <div className={s.vehicleWrapper}>
           <FilterCheckbox
-            inputName="vehicleType"
+            inputName="form"
             value="panelTruck"
-            checked={vehicleType === 'panelTruck'}
+            checked={form === 'panelTruck'}
             onChange={() =>
-              handleChange(
-                'vehicleType',
-                vehicleType === 'panelTruck' ? '' : 'panelTruck'
-              )
+              handleChange('form', form === 'panelTruck' ? '' : 'panelTruck')
             }
             name="icon-bi_grid-1x2"
-            children="Van"
+            children={'Van'}
           />
 
           <FilterCheckbox
-            inputName="vehicleType"
+            inputName="form"
             value="fullyIntegrated"
-            checked={vehicleType === 'fullyIntegrated'}
+            checked={form === 'fullyIntegrated'}
             onChange={() =>
               handleChange(
-                'vehicleType',
-                vehicleType === 'fullyIntegrated' ? '' : 'fullyIntegrated'
+                'form',
+                form === 'fullyIntegrated' ? '' : 'fullyIntegrated'
               )
             }
             name="icon-bi_grid"
-            children="Fully Integrated"
+            children={'Fully Integrated'}
           />
 
           <FilterCheckbox
-            inputName="vehicleType"
+            inputName="form"
             value="alcove"
-            checked={vehicleType === 'alcove'}
+            checked={form === 'alcove'}
             onChange={() =>
-              handleChange(
-                'vehicleType',
-                vehicleType === 'alcove' ? '' : 'alcove'
-              )
+              handleChange('form', form === 'alcove' ? '' : 'alcove')
             }
             name="icon-bi_grid-3x3-gap"
-            children="Alcove"
+            children={'Alcove'}
           />
         </div>
       </div>
+
       <Button className={s.formButton} type="submit">
         Search
       </Button>

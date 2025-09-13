@@ -1,25 +1,30 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  fetchCampers,
+  fetchAllCampers,
   fetchFilteredCampers,
 } from '../../redux/campers/operations';
-import { setPage, resetPage } from '../../redux/campers/slice';
 import {
-  selectItems,
+  setPage,
+  resetPage,
+  setFilters,
+  resetFilters,
+} from '../../redux/campers/slice';
+import {
   selectPage,
   selectIsLoading,
   selectError,
   selectTotalPages,
   selectPaginatedCampers,
+  selectItems,
+  selectLocations,
 } from '../../redux/campers/selectors';
 import CamperList from '../../components/CamperList/CamperList';
 import FiltersForm from '../../components/FiltersForm/FiltersForm';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import Loader from '../../components/Loader/Loader';
-import s from './CatalogPage.module.css';
-import { resetFilters } from '../../redux/filters/slice';
 import Button from '../../components/Button/Button';
+import s from './CatalogPage.module.css';
 
 const CatalogPage = () => {
   const dispatch = useDispatch();
@@ -29,28 +34,30 @@ const CatalogPage = () => {
   const totalPages = useSelector(selectTotalPages);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
-
-  const locationOptions = Array.from(new Set(allCampers.map(c => c.location)));
+  const locationOptions = useSelector(selectLocations);
 
   useEffect(() => {
-    dispatch(fetchCampers());
-  }, [dispatch]);
-
-  const handleLoadMore = () => {
-    if (page < totalPages) {
-      dispatch(setPage(page + 1));
+    if (campers.length === 0) {
+      dispatch(fetchAllCampers());
+      dispatch(fetchFilteredCampers());
     }
-  };
+  }, [dispatch, campers.length]);
 
   const handleSearch = filters => {
+    dispatch(setFilters(filters));
     dispatch(resetPage());
-    dispatch(fetchFilteredCampers(filters));
+    dispatch(fetchFilteredCampers());
   };
 
   const handleShowAll = () => {
     dispatch(resetFilters());
     dispatch(resetPage());
-    dispatch(fetchCampers());
+    dispatch(fetchFilteredCampers());
+  };
+
+  const handleLoadMore = () => {
+    dispatch(setPage(page + 1));
+    dispatch(fetchFilteredCampers());
   };
 
   const hasCampers = campers.length > 0;
@@ -77,7 +84,7 @@ const CatalogPage = () => {
           </>
         )}
 
-        {hasCampers && page < totalPages && (
+        {page < totalPages && (
           <Button className={s.loadMore} onClick={handleLoadMore}>
             Load More
           </Button>
@@ -88,4 +95,5 @@ const CatalogPage = () => {
     </div>
   );
 };
+
 export default CatalogPage;

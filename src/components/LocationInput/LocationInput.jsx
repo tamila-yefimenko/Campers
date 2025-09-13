@@ -1,30 +1,38 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
-import { setFilter } from '../../redux/filters/slice';
-import { selectLocation } from '../../redux/filters/selectors';
+import { useEffect, useState } from 'react';
+import { setFilters } from '../../redux/campers/slice';
+import { selectFilters } from '../../redux/campers/selectors';
 import s from './LocationInput.module.css';
 import Icon from '../Icon/Icon';
 
 const LocationInput = ({ locationOptions = [] }) => {
   const dispatch = useDispatch();
-  const selectedLocation = useSelector(selectLocation);
+  const filters = useSelector(selectFilters);
 
-  const [query, setQuery] = useState(selectedLocation || '');
+  const [query, setQuery] = useState(filters.location || '');
   const [showSuggestions, setShowSuggestions] = useState(false);
 
-  const filteredOptions = locationOptions.filter(loc =>
+  useEffect(() => {
+    setQuery(filters.location || '');
+  }, [filters.location]);
+
+  const uniqueOptions = [...new Set(locationOptions)];
+  const filteredOptions = uniqueOptions.filter(loc =>
     loc.toLowerCase().includes(query.toLowerCase())
   );
 
   const handleChange = e => {
-    setQuery(e.target.value);
+    const value = e.target.value;
+    setQuery(value);
     setShowSuggestions(true);
+
+    dispatch(setFilters({ ...filters, location: value }));
   };
 
   const handleSelect = option => {
     setQuery(option);
     setShowSuggestions(false);
-    dispatch(setFilter({ key: 'location', value: option }));
+    dispatch(setFilters({ ...filters, location: option }));
   };
 
   return (
@@ -51,10 +59,10 @@ const LocationInput = ({ locationOptions = [] }) => {
       {showSuggestions && (
         <ul className={s.suggestionsList}>
           {filteredOptions.length > 0 ? (
-            filteredOptions.map(option => (
+            filteredOptions.map((option, idx) => (
               <li
                 className={s.suggestionItem}
-                key={option}
+                key={`${option}-${idx}`}
                 onMouseDown={() => handleSelect(option)}
               >
                 {option}

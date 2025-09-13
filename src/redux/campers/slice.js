@@ -1,17 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
+  fetchAllCampers,
   fetchCamperById,
-  fetchCampers,
   fetchFilteredCampers,
 } from './operations';
 
 const initialState = {
   items: [],
+  locations: [],
   filtered: [],
   currentCamper: null,
+  total: 0,
   page: 1,
   limit: 4,
-  total: 0,
+  filters: {},
   isLoading: false,
   error: null,
 };
@@ -20,31 +22,35 @@ const campersSlice = createSlice({
   name: 'campers',
   initialState,
   reducers: {
-    setPage: (state, action) => {
+    setPage(state, action) {
       state.page = action.payload;
     },
-    resetPage: state => {
+    resetPage(state) {
       state.page = 1;
     },
-    resetItems: state => {
-      state.filtered = state.items;
-      state.page = 1;
-      state.total = state.items.length;
+    setFilters(state, action) {
+      state.filters = action.payload;
+    },
+    resetFilters(state) {
+      state.filters = {};
     },
   },
   extraReducers: builder => {
     builder
-      .addCase(fetchCampers.pending, state => {
+      .addCase(fetchAllCampers.pending, state => {
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(fetchCampers.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.items = action.payload.items;
-        state.filtered = action.payload.items;
-        state.total = action.payload.total;
+      .addCase(fetchAllCampers.fulfilled, (state, action) => {
+        state.items = action.payload;
+
+        const uniqueLocations = [
+          ...new Set(action.payload.map(item => item.location)),
+        ];
+
+        state.locations = uniqueLocations;
       })
-      .addCase(fetchCampers.rejected, (state, action) => {
+      .addCase(fetchAllCampers.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       })
@@ -54,8 +60,13 @@ const campersSlice = createSlice({
       })
       .addCase(fetchFilteredCampers.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.filtered = action.payload.items;
-        state.page = 1;
+
+        if (state.page === 1) {
+          state.filtered = action.payload.items;
+        } else {
+          state.filtered = [...state.filtered, ...action.payload.items];
+        }
+
         state.total = action.payload.total;
       })
       .addCase(fetchFilteredCampers.rejected, (state, action) => {
@@ -78,5 +89,7 @@ const campersSlice = createSlice({
   },
 });
 
-export const { setPage, resetPage, resetItems } = campersSlice.actions;
+export const { setPage, resetPage, setFilters, resetFilters } =
+  campersSlice.actions;
+
 export default campersSlice.reducer;
