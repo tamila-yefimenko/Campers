@@ -14,12 +14,17 @@
   padding: 40px 10px;
 }
 
+.loadMoreWrapper {
+  height: 54px;
+  margin-top: 40px;
+}
+
 .loadMore {
   width: 145px;
   background-color: #fff;
   color: #101828;
   border: 1px solid #dadde1;
-  margin: 40px auto 0;
+  margin: 0 auto;
   transition: border 0.3s ease;
 }
 

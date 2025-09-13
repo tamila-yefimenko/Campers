@@ -84,11 +84,13 @@ const CatalogPage = () => {
           </>
         )}
 
-        {page < totalPages && (
-          <Button className={s.loadMore} onClick={handleLoadMore}>
-            Load More
-          </Button>
-        )}
+        <div className={s.loadMoreWrapper}>
+          {page < totalPages && (
+            <Button className={s.loadMore} onClick={handleLoadMore}>
+              Load More
+            </Button>
+          )}
+        </div>
 
         {error && <ErrorMessage />}
       </div>

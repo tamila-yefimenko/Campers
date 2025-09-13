@@ -16,8 +16,11 @@ const BookingSchema = Yup.object().shape({
     .required('Required'),
   email: Yup.string().email('Invalid email').required('Required'),
   dateRange: Yup.array()
-    .of(Yup.date().required())
-    .min(2, 'Please select start and end date')
+    .test(
+      'dateRange',
+      'Please select start and end date',
+      value => Array.isArray(value) && value[0] && value[1]
+    )
     .required('Required'),
   comment: Yup.string().max(500, 'Too Long!'),
 });
