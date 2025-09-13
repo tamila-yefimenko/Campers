@@ -1,7 +1,7 @@
 # 🚐 TravelTrucks – Camper Rental Frontend
 
 <p align="center">
-  <img src="./assets/bgr-picture.webp" alt="TravelTrucks Camper" width="600"/>
+  <img src="/assets/bgr-picture.webp" alt="TravelTrucks Camper" width="600"/>
 </p>
 
 ## 🌍 Project Overview
